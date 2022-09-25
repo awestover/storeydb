@@ -1,10 +1,11 @@
 package main
 
 import (
-	// "errors"
 	"fmt"
 	"io"
 	"net/http"
+  "encoding/json"
+	// "errors"
 	// "os"
 )
 
@@ -24,9 +25,25 @@ func getHello(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, "Hello, HTTP!\n")
 }
 
+func getJsonthing(w http.ResponseWriter, r *http.Request){
+  enableCors(&w)
+	data := map[string]interface{}{
+		"intValue":    1234,
+		"boolValue":   true,
+		"stringValue": "hello!",
+		"objectValue": map[string]interface{}{
+			"arrayValue": []int{1, 2, 3, 4},
+		},
+	}
+  jsonData, _ := json.Marshal(data)
+  fmt.Println("yoyo yo big data")
+  io.WriteString(w, string(jsonData))
+}
+
 func main() {
 	http.HandleFunc("/", getRoot)
 	http.HandleFunc("/hello", getHello)
+	http.HandleFunc("/bigdata", getJsonthing)
 
 	http.ListenAndServe(":3333", nil)
 

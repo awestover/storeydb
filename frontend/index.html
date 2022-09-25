@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Blah</title>
+
+    <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
   </head>
   <body>
 
@@ -22,6 +24,10 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 <!-- Load our React component. -->
 <script src="like_button.js"></script>
+
+<script>
+$.get("http://localhost:3333/bigdata", (x)=>{console.log(x); alert(x)});
+</script>
 
   </body>
 </html>
