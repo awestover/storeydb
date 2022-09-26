@@ -16,8 +16,9 @@ function App() {
     <div className="App">
       <AppHeader/>
       <header className="App-header">
-        <SideCarousel contentType="characters"/>
-        <SideCarousel contentType="items"/>
+        <SideCarousel contentType="character"/>
+        <SideCarousel contentType="location"/>
+        <SideCarousel contentType="item"/>
       </header>
     </div>
   );

@@ -35,7 +35,7 @@ export default function ImageCards(props) {
         </Typography>
 
         <Typography variant="body2" color="text.primary">
-          { props.bio }
+          { props.description }
         </Typography>
       </CardContent>
 

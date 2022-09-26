@@ -12,7 +12,7 @@ function SideCarousel(props) {
 
   useEffect(() => {
     console.log(props.contentType);
-    axios.get(SERVER_URL + "bigdata")
+    axios.get(SERVER_URL + "bigdata", { params: {name: props.contentType}})
       .then(res => {
         const data = res.data;
         setBigData(res.data);
@@ -27,7 +27,7 @@ function SideCarousel(props) {
         <Box display="flex">
           { bigData.map((character) => 
           <Box m={3}>
-            <ImageCards name={character.name} bio={character.bio}/>
+            <ImageCards name={character.name} description={character.description}/>
           </Box>
           ) }
         </Box>

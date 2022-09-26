@@ -13,9 +13,7 @@ import (
 
 func main() {
 	r := mux.NewRouter()
-	r.HandleFunc("/", HomeHandler)
-	r.HandleFunc("/stories", StoriesHandler)
-	r.HandleFunc("/bigdata", getJsonthing)
+	r.HandleFunc("/bigdata", GetElement)
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})
@@ -23,41 +21,64 @@ func main() {
 
 	PORT := "5000"
 	fmt.Println("Listening on port " + PORT)
-
 	corsHandler := handlers.CORS(originsOk, headersOk, methodsOk)(r)
-
 	http.ListenAndServe(":"+PORT, corsHandler)
 }
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "Category: %v\n", vars["category"])
+type ElementData struct {
+  Name string         `json:"name"`
+  Description string  `json:"description"`
 }
+func GetElement(w http.ResponseWriter, r *http.Request){
+  eltType := r.URL.Query().Get("name")
 
-func StoriesHandler(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "Category: %v\n", vars["category"])
-}
-
-type CharacterData struct {
-  Name string `json:"name"`
-  Bio string  `json:"bio"`
-}
-
-func getJsonthing(w http.ResponseWriter, r *http.Request){
   // todo: read this from a db
-  characters := [5]CharacterData{}
-  characters[0] = CharacterData{Name: "Bob", Bio:"he is a really stsrong dude"}
-  characters[1] = CharacterData{Name: "Kevin", Bio: "he is a wizard. magical powers include insane coding skillz"}
-  characters[2] = CharacterData{Name: "jumpydude", Bio: "he is a nice guy. "}
-  characters[3] = CharacterData{Name: "theland dog", Bio: "he eats grass"}
-  characters[4] = CharacterData{Name: "dragon thing", Bio: "he someitmes likes to eat pizza"}
-
-  jsonData, _ := json.Marshal(characters)
+  if(eltType == "character"){
+    elt := [4]ElementData{}
+    elt[0] = ElementData{Name: "Bob", Description:"he is a really stsrong dude"}
+    elt[1] = ElementData{Name: "Kevin", Description: "he is a wizard. magical powers include insane coding skillz"}
+    elt[2] = ElementData{Name: "jumpydude", Description: "he is a nice guy. "}
+    elt[3] = ElementData{Name: "theland dog", Description: "he eats grass"}
+    jsonData, _ := json.Marshal(elt)
+    io.WriteString(w, string(jsonData))
+  } else if(eltType == "location"){
+    elt := [2]ElementData{}
+    elt[0] = ElementData{Name: "narnia", Description:"this is a nice place"}
+    elt[1] = ElementData{Name: "skadrial", Description: "so cold"}
+    jsonData, _ := json.Marshal(elt)
+    io.WriteString(w, string(jsonData))
+  } else {
+    elt := [2]ElementData{}
+    elt[0] = ElementData{Name: "rip", Description:"asddffasjdlkffasdff"}
+    elt[1] = ElementData{Name: "asdff", Description: "asdff"}
+    jsonData, _ := json.Marshal(elt)
+    io.WriteString(w, string(jsonData))
+  }
 
   fmt.Println("yoyo yo big data")
-  io.WriteString(w, string(jsonData))
+  fmt.Println(eltType)
 }
 
+type StoryData struct {
+  Title string    `json:"title"`
+  PoV string      `json:"pov"`
+  Summary string  `json:"summary"`
+  Scene string    `json:"scene"`
+}
+func getStories(w http.ResponseWriter, r *http.Request){
+  whichStory := r.URL.Query().Get("storyid")
+
+  s1 := StoryData{Title: "intro", PoV: "kevin", Summary: "kevin makes a really cool webapp", Scene: " Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "}
+
+  s2 := StoryData{Title: "funnytitle", PoV: "alek", Summary: "alek does his math homework", Scene: "once upon a time there was a priority queue in the RAM model that supported insert decrease key and delete min opperations in log log u time where u is the set of possible keys"}
+
+  if(whichStory == "intro"){
+    jsonData, _ := json.Marshal(s1)
+    io.WriteString(w, string(jsonData))
+  } else {
+    jsonData, _ := json.Marshal(s2)
+    io.WriteString(w, string(jsonData))
+  }
+
+  fmt.Println("STORY TIME")
+}
