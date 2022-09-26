@@ -19,7 +19,7 @@ export default function ImageCards(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   return (
-    <Card sx={{ maxWidth: 500, minWidth: 150 }}>
+    <Card sx={{ width: 250, height: 300 }}>
 
       <CardMedia
         component="img"
@@ -32,6 +32,10 @@ export default function ImageCards(props) {
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           { props.name }
+        </Typography>
+
+        <Typography variant="body2" color="text.primary">
+          { props.bio }
         </Typography>
       </CardContent>
 

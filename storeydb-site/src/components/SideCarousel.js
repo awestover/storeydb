@@ -8,25 +8,30 @@ import ImageCards from './ImageCards';
 
 function SideCarousel(props) {
 
-  const [characters, setCharacters] = useState(["Bob", "Bucky", "hello"]);
+  const [bigData, setBigData] = useState(null);
 
   useEffect(() => {
-    axios.get(SERVER_URL + "bigdata/")
+    console.log(props.contentType);
+    axios.get(SERVER_URL + "bigdata")
       .then(res => {
         const data = res.data;
-        this.setCharacters(data.characters);
+        setBigData(res.data);
+        console.log(JSON.stringify(res.data))
       })
   }, []);
 
   return (
     <>
-      <Box display="flex">
-        { characters.map((character) => 
+
+      { bigData && 
+        <Box display="flex">
+          { bigData.map((character) => 
           <Box m={3}>
-            <ImageCards name={character}/>
+            <ImageCards name={character.name} bio={character.bio}/>
           </Box>
-        ) }
-      </Box>
+          ) }
+        </Box>
+      }
     </>
   );
 
