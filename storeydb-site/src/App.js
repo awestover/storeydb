@@ -15,8 +15,4 @@ function App() {
   );
 }
 
-function getdata(){
-  $.get("http://localhost:3333/bigdata", (x)=>{console.log(x); alert(x)});
-}
-
 export default App;
