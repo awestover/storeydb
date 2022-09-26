@@ -41,16 +41,22 @@ func StoriesHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Category: %v\n", vars["category"])
 }
 
+type CharacterData struct {
+  Name string `json:"name"`
+  Bio string  `json:"bio"`
+}
+
 func getJsonthing(w http.ResponseWriter, r *http.Request){
-	data := map[string]interface{}{
-		"intValue":    1234,
-		"boolValue":   true,
-		"stringValue": "hello!",
-		"objectValue": map[string]interface{}{
-			"arrayValue": []int{1, 2, 3, 4},
-		},
-	}
-  jsonData, _ := json.Marshal(data)
+  // todo: read this from a db
+  characters := [5]CharacterData{}
+  characters[0] = CharacterData{Name: "Bob", Bio:"he is a really stsrong dude"}
+  characters[1] = CharacterData{Name: "Kevin", Bio: "he is a wizard. magical powers include insane coding skillz"}
+  characters[2] = CharacterData{Name: "jumpydude", Bio: "he is a nice guy. "}
+  characters[3] = CharacterData{Name: "theland dog", Bio: "he eats grass"}
+  characters[4] = CharacterData{Name: "dragon thing", Bio: "he someitmes likes to eat pizza"}
+
+  jsonData, _ := json.Marshal(characters)
+
   fmt.Println("yoyo yo big data")
   io.WriteString(w, string(jsonData))
 }
