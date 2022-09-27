@@ -2,7 +2,6 @@ import './App.css';
 
 import SideCarousel from './components/SideCarousel';
 import AppHeader from './components/AppHeader';
-import MyPopup from './components/Popup';
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
         <SideCarousel contentType="item"/>
       </header>
 
-      <MyPopup/>
     </div>
   );
 }

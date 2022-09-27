@@ -15,6 +15,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+import MyPopup from './Popup';
+
 export default function ImageCards(props) {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -27,7 +29,6 @@ export default function ImageCards(props) {
         image="https://images.unsplash.com/photo-1664055258388-6efc6fbe0aa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
         alt="Paella dish"
       />
-
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -46,6 +47,8 @@ export default function ImageCards(props) {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
+
+    <MyPopup />
       </CardActions>
 
     </Card>
