@@ -14,6 +14,7 @@ import (
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/bigdata", GetElement)
+	r.HandleFunc("/pushElement", PushElement)
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})
@@ -25,16 +26,29 @@ func main() {
 	http.ListenAndServe(":"+PORT, corsHandler)
 }
 
+func PushElement(w http.ResponseWriter, r *http.Request){
+  eltName := r.URL.Query().Get("name")
+  eltDescription := r.URL.Query().Get("description")
+
+  // ElementData{Name: eltName, Description: eltDescription}
+
+  fmt.Println("BEHOLD! a user has submitted a new element")
+  fmt.Println(eltName)
+  fmt.Println(eltDescription)
+}
+
 type ElementData struct {
   Name string         `json:"name"`
   Description string  `json:"description"`
 }
+
 func GetElement(w http.ResponseWriter, r *http.Request){
   eltType := r.URL.Query().Get("name")
 
+  elt := [4]ElementData{}
+
   // todo: read this from a db
   if(eltType == "character"){
-    elt := [4]ElementData{}
     elt[0] = ElementData{Name: "Bob", Description:"he is a really stsrong dude"}
     elt[1] = ElementData{Name: "Kevin", Description: "he is a wizard. magical powers include insane coding skillz"}
     elt[2] = ElementData{Name: "jumpydude", Description: "he is a nice guy. "}
