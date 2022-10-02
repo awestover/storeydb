@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
 
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import ImageCards from './ImageCards';
 
@@ -24,7 +24,10 @@ function SideCarousel(props) {
     <>
 
       { bigData && 
-      <Box display="flex" m={5} sx={{width: "60%", overflowX: "scroll", border: "2px solid black"}}>
+      <Box display="flex" m={3} sx={{width: "60%", overflowX: "scroll", border: "2px solid black"}}>
+
+        <Typography variant="h5"> { props.contentType } </Typography>
+
           { bigData.map((character) => 
           <Box m={3}>
             <ImageCards name={character.name} description={character.description}/>
