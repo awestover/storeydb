@@ -23,7 +23,7 @@ function SideCarousel(props) {
   return (
     <>
       { bigData && 
-        <Box display="flex">
+      <Box display="flex" m={5} sx={{width: "60%", overflowX: "scroll", border: "2px solid black"}}>
           { bigData.map((character) => 
           <Box m={3}>
             <ImageCards name={character.name} description={character.description}/>
