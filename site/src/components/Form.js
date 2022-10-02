@@ -12,6 +12,10 @@ export const Form = ({ onSubmit }) => {
         <input className="form-control" id="description" />
       </div>
       <div className="form-group">
+        <label htmlFor="type">EltType</label>
+        <input className="form-control" id="type" />
+      </div>
+      <div className="form-group">
         <button className="form-control btn btn-primary" type="submit">
           Submit
         </button>
