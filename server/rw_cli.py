@@ -1,6 +1,6 @@
 import requests
 import json
-kevin_server = "doranelle.kevinhsu.net"
+kevin_server = "http://doranelle.kevinhsu.net"
 
 def getscene(title):
   requests.get(f"{kevin_server}/getscene", params={"title": title})
