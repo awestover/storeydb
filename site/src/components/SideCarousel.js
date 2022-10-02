@@ -22,7 +22,6 @@ function SideCarousel(props) {
 
   return (
     <>
-
       { bigData && 
         <Box display="flex">
           { bigData.map((character) => 
@@ -34,10 +33,7 @@ function SideCarousel(props) {
       }
     </>
   );
-
 }
 
-
 export default SideCarousel;
-
 
