@@ -19,6 +19,14 @@
 		{
 			"name": "yetiyeti",
 			"description": "im very big and stuff"
+		},
+		{
+			"name": "yetiyeti",
+			"description": "im very big and stuff"
+		},
+		{
+			"name": "yetiyeti",
+			"description": "im very big and stuff"
 		}
 	],
 	"item": [
@@ -39,6 +47,10 @@
 		{
 			"name": "narnia",
 			"description": "so cold"
+		},
+		{
+			"name": "bed",
+			"description": "v nice"
 		}
 	]
 }

@@ -1,9 +1,9 @@
 import requests
 import json
-kevin_server = "doranelle.kevinhsu.net"
+kevin_server = "http://doranelle.kevinhsu.net"
 
 def getscene(title):
-  requests.get(f"{kevin_server}/getscene", params={"title": title})
+  return requests.get(f"{kevin_server}/getscene", params={"title": title})
 
 def pushscene(fname):
   with open(fname, 'r') as myfile:
@@ -15,7 +15,7 @@ choice = input("[get]scene/[push]scene\n> ")
 
 if choice == "get":
   title = input("title?\n> ")
-  getscene(title)
+  print(getscene(title))
 elif choice == "push":
   fname = input("location of file to be pushed?\n>")
   pushscene(fname)

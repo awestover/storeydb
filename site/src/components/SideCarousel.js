@@ -22,7 +22,6 @@ function SideCarousel(props) {
 
   return (
     <>
-
       { bigData && 
       <Box display="flex" m={3} sx={{width: "60%", overflowX: "scroll", border: "2px solid black"}}>
 
@@ -37,10 +36,7 @@ function SideCarousel(props) {
       }
     </>
   );
-
 }
 
-
 export default SideCarousel;
-
 
