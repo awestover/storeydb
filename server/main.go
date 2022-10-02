@@ -31,12 +31,33 @@ func main() {
 func PushElement(w http.ResponseWriter, r *http.Request) {
 	eltName := r.URL.Query().Get("name")
 	eltDescription := r.URL.Query().Get("description")
+	eltType := r.URL.Query().Get("type")
 
 	// ElementData{Name: eltName, Description: eltDescription}
 
-	fmt.Println("BEHOLD! a user has submitted a new element")
+	// open json file, read as bytes, convert to dict
+	elts := map[string][]ElementData{}
+	filename := "db/elts.json"
+	jsonFile, _ := os.Open(filename)
+	defer jsonFile.Close()
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+	json.Unmarshal(byteValue, &elts)
+
 	fmt.Println(eltName)
 	fmt.Println(eltDescription)
+	fmt.Println(eltType)
+	fmt.Println(elts)
+
+	if eltType == "" {
+		return
+	}
+
+	newElt := ElementData{eltName, eltDescription}
+	elts[eltType] = append(elts[eltType], newElt)
+	byteValue, _ = json.MarshalIndent(elts, "", "	")
+	_ = ioutil.WriteFile(filename, byteValue, 0644)
+
+	fmt.Println("BEHOLD! a user has submitted a new element")
 }
 
 type ElementData struct {
@@ -47,19 +68,22 @@ type ElementData struct {
 func GetElement(w http.ResponseWriter, r *http.Request) {
 	eltType := r.URL.Query().Get("name")
 
+	// open json file, read as bytes, convert to dict
 	elts := map[string][]ElementData{}
 	filename := "db/elts.json"
 	jsonFile, _ := os.Open(filename)
+	defer jsonFile.Close()
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	json.Unmarshal(byteValue, &elts)
 
+	// convert from dict to json
 	jsonData, _ := json.Marshal(elts[eltType])
 	io.WriteString(w, string(jsonData))
 
-	fmt.Println(jsonData)
-	fmt.Println(elts)
-	fmt.Println("yoyo yo big data")
-	fmt.Println(eltType)
+	// fmt.Println(jsonData)
+	// fmt.Println(elts)
+	// fmt.Println("yoyo yo big data")
+	// fmt.Println(eltType)
 }
 
 type StoryData struct {
@@ -78,11 +102,12 @@ func getStories(w http.ResponseWriter, r *http.Request) {
 	stories := map[string]Stories{}
 	filename := "db/story.json"
 	jsonFile, _ := os.Open(filename)
+	defer jsonFile.Close()
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	json.Unmarshal(byteValue, &stories)
 
 	jsondata, _ := json.Marshal(stories[whichStory])
 	io.WriteString(w, string(jsondata))
 
-	fmt.Println("STORY TIME")
+	// fmt.Println("STORY TIME")
 }

@@ -16,7 +16,7 @@ import Form from './Form.js'
 
 let submitdude = ()=>{
   alert("test");
-  axios.get(SERVER_URL + "pushElement", { params: {name: "yetiyeti", description: "im very big and stuff"}})
+  axios.get(SERVER_URL + "pushElement", { params: {name: "yetiyeti", description: "im very big and stuff", type: "character"}})
     .then(res => { alert(JSON.stringify(res.data)); });
 };
 
