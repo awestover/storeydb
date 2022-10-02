@@ -25,6 +25,10 @@
 		{
 			"name": "computer",
 			"description": "asdfasdf"
+		},
+		{
+			"name": "test",
+			"description": "hello"
 		}
 	],
 	"location": [
