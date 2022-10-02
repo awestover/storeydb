@@ -1,0 +1,15 @@
+{
+  "characters": [
+    { "name": "Bob", "description":"he is a really stsrong dude" },
+    { "name": "kevin", "description":"insane coding skillz" },
+    { "name": "jumpydude", "description":"nice dude" },
+    { "name": "thelanddog", "description":"he eats grass" }
+  ],
+  "location": [
+    {"name": "narnia", "description": "nice place"},
+    {"name": "narnia", "description": "so cold"}
+  ],
+  "items": [
+    {"name": "computer", "description": "asdfasdf"}
+  ]
+}
