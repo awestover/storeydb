@@ -1,22 +1,29 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
+import { Box, Typography } from '@mui/material';
+import ImageCards from './ImageCards';
 
-export const Form = () => {
-
+export const Form = (props) => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
 
   function submitdude(name, description, type) {
-    // axios.get(SERVER_URL + "pushElement", { params: {name: "yetiyeti", description: "im very big and stuff", type: "character"}})
+    alert(name);
+    alert(description);
     axios.get(SERVER_URL + "pushElement", { 
       params: {
         name: name, 
         description: description, 
         type: type}})
       .then(res => { 
-        alert(JSON.stringify(res.data)); 
+        props.closefn();
+        let pushDude = document.getElementById(res.data.type + "Carousel");
+        // let pushStuff = <Box m={3}> <ImageCards name={res.data.name} description={res.data.description}/> </Box> ;
+        let pushStuff = JSON.stringify(res.data);
+        console.log(pushStuff);
+        pushDude.append(pushStuff);
       });
   }
 

@@ -6,15 +6,6 @@ import 'reactjs-popup/dist/index.css';
 // import { SERVER_URL } from '../constants';
 import Form from './Form.js'
 
-// export default function MyPopup() {
-//   return (
-//   <Popup trigger={<button> Trigger</button>} position="right center">
-//     <div>Popup content here !!</div>
-//   </Popup>
-//   );
-// };
-
-
 export default function MyPopup() {
   return ( 
     <Popup trigger={<button className="button"> view more </button>} modal nested > 
@@ -23,7 +14,7 @@ export default function MyPopup() {
       <div className="content"> 
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum. Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates delectus doloremque, explicabo tempore dicta adipisci fugit amet dignissimos? <br /> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit commodi beatae optio voluptatum sed eius cumque, delectus saepe repudiandae explicabo nemo nam libero ad, doloribus, voluptas rem alias. Vitae? </div> 
 
-      <Form></Form>
+      <Form closefn={close}></Form>
 
       <div className="actions"> <button className="button" onClick={() => { console.log('modal closed '); close(); }} > close modal </button> </div> 
 

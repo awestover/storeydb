@@ -2,55 +2,94 @@
 	"character": [
 		{
 			"name": "Bob",
-			"description": "he is a really stsrong dude"
+			"description": "he is a really stsrong dude",
+			"type": "character"
 		},
 		{
 			"name": "kevin",
-			"description": "insane coding skillz"
+			"description": "insane coding skillz",
+			"type": "character"
 		},
 		{
 			"name": "jumpydude",
-			"description": "nice dude"
-		},
+			"description": "nice dude",
+			"type": "character"
+		}
+	],
+	"d": [
 		{
-			"name": "thelanddog",
-			"description": "he eats grass"
-		},
-		{
-			"name": "yetiyeti",
-			"description": "im very big and stuff"
-		},
-		{
-			"name": "yetiyeti",
-			"description": "im very big and stuff"
-		},
-		{
-			"name": "yetiyeti",
-			"description": "im very big and stuff"
+			"name": "d",
+			"description": "d",
+			"type": "d"
 		}
 	],
 	"item": [
 		{
 			"name": "computer",
-			"description": "asdfasdf"
+			"description": "asdfasdf",
+			"type": "item"
 		},
 		{
-			"name": "test",
-			"description": "hello"
+			"name": "alek",
+			"description": "alek",
+			"type": "item"
+		},
+		{
+			"name": "asdf",
+			"description": "asdf",
+			"type": "item"
+		},
+		{
+			"name": "asdf",
+			"description": "asdf",
+			"type": "item"
+		},
+		{
+			"name": "dd",
+			"description": "dd",
+			"type": "item"
+		},
+		{
+			"name": "asdf",
+			"description": "asdf",
+			"type": "item"
+		},
+		{
+			"name": "asdf",
+			"description": "asdf",
+			"type": "item"
+		},
+		{
+			"name": "sdf",
+			"description": "sdf",
+			"type": "item"
+		},
+		{
+			"name": "sdf",
+			"description": "sdf",
+			"type": "item"
+		},
+		{
+			"name": "d",
+			"description": "d",
+			"type": "item"
+		},
+		{
+			"name": "asd",
+			"description": "d",
+			"type": "item"
 		}
 	],
 	"location": [
 		{
 			"name": "narnia",
-			"description": "nice place"
+			"description": "nice place",
+			"type": ""
 		},
 		{
-			"name": "narnia",
-			"description": "so cold"
-		},
-		{
-			"name": "bed",
-			"description": "v nice"
+			"name": "asdf",
+			"description": "asdf",
+			"type": "location"
 		}
 	]
 }

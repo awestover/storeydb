@@ -8,9 +8,9 @@ function App() {
     <div className="App">
       <AppHeader/>
       <header className="App-header">
-        <SideCarousel contentType="character"/>
-        <SideCarousel contentType="location"/>
-        <SideCarousel contentType="item"/>
+        <SideCarousel contentType="character" id="characterCarousel"/>
+        <SideCarousel contentType="location"  id="locationCarousel"/>
+        <SideCarousel contentType="item"      id="itemCarousel"/>
       </header>
 
     </div>

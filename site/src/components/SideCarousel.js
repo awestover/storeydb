@@ -9,6 +9,7 @@ import ImageCards from './ImageCards';
 function SideCarousel(props) {
 
   const [bigData, setBigData] = useState(null);
+  let dataDudes = null;
 
   useEffect(() => {
     console.log(props.contentType);
@@ -16,14 +17,19 @@ function SideCarousel(props) {
       .then(res => {
         const data = res.data;
         setBigData(res.data);
-        console.log(JSON.stringify(res.data))
+        dataDudes = res.data;
+        console.log(JSON.stringify(res.data));
       })
   }, []);
+
+  const appendDude = (dude) => {
+    setBigData(dataDudes => [...dataDudes, dude]);
+  };
 
   return (
     <>
       { bigData && 
-      <Box display="flex" m={3} sx={{width: "60%", overflowX: "scroll", border: "2px solid black"}}>
+      <Box id={props.id} display="flex" m={3} sx={{width: "60%", overflowX: "scroll", border: "2px solid black"}}>
 
         <Typography variant="h5"> { props.contentType } </Typography>
 
