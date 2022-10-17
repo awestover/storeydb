@@ -55,7 +55,7 @@ func ReadFile(filename string) []byte {
 func EditElement(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("edit element called!!!!!!!!!!")
 	eltOldName := r.URL.Query().Get("oldName")
-	_ := r.URL.Query().Get("oldDescription")
+	_ = r.URL.Query().Get("oldDescription")
 	eltName := r.URL.Query().Get("name")
 	eltDescription := r.URL.Query().Get("description")
 	eltType := r.URL.Query().Get("type")
@@ -73,12 +73,24 @@ func EditElement(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// deleted := 0
+	// for i := range elts[eltType] {
+	//   j := i - deleted
+
+	//   oldElt := elts[eltType][i]
+	//   if oldElt.Name == eltOldName {
+	//     elts[eltType] = append(elts[eltType][:1], elts[eltType][i+1:]...)
+	//   }
+	// }
+
 	newElt := ElementData{eltName, eltDescription, eltType}
 	elts[eltType] = append(elts[eltType], newElt)
 
 	byteValue, _ = json.MarshalIndent(elts, "", "	")
 	_ = ioutil.WriteFile(filename, byteValue, 0644)
 
+	jsonData, _ := json.Marshal(newElt)
+	io.WriteString(w, string(jsonData))
 	fmt.Println("BEHOLD! a user has edited an old element")
 }
 
