@@ -55,7 +55,7 @@ func ReadFile(filename string) []byte {
 func EditElement(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("edit element called!!!!!!!!!!")
 	eltOldName := r.URL.Query().Get("oldName")
-	eltOldDescription := r.URL.Query().Get("oldDescription")
+	_ := r.URL.Query().Get("oldDescription")
 	eltName := r.URL.Query().Get("name")
 	eltDescription := r.URL.Query().Get("description")
 	eltType := r.URL.Query().Get("type")
