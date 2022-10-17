@@ -10,6 +10,7 @@ function SideCarousel(props) {
 
   const [bigData, setBigData] = useState(null);
   let dataDudes = null;
+  const [refresh, setRefresh] = useState(true);
 
   useEffect(() => {
     console.log(props.contentType);
@@ -20,11 +21,11 @@ function SideCarousel(props) {
         dataDudes = res.data;
         console.log(JSON.stringify(res.data));
       })
-  }, []);
+  }, [refresh]);
 
-  const appendDude = (dude) => {
-    setBigData(dataDudes => [...dataDudes, dude]);
-  };
+  const updateData = () => {
+    setRefresh(!refresh);
+  }
 
   return (
     <>
@@ -35,7 +36,7 @@ function SideCarousel(props) {
 
           { bigData.map((character) => 
           <Box m={3}>
-            <ImageCards name={character.name} description={character.description}/>
+            <ImageCards name={character.name} description={character.description} updateData={setRefresh}/>
           </Box>
           ) }
         </Box>
