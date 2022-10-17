@@ -72,7 +72,7 @@ export const AddForm = (props) => {
 
   return (
     <>
-    <h1>this form is different. its  all about ADDING</h1>
+    <h4>this form is different. its  all about ADDING</h4>
 
       <div className="form-group">
         <label htmlFor="name">Name</label>
