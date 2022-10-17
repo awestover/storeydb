@@ -100,7 +100,7 @@ export const AddForm = (props) => {
       </div>
       <div className="form-group">
         <button className="form-control btn btn-primary" onClick={() => editdude(name, description, type)}>
-          editdude
+          addform
         </button>
       </div>
     </>
