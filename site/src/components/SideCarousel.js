@@ -63,7 +63,6 @@ function SideCarousel(props) {
 
 
       < AddPopup />
-      <button onClick={() => newdude(props.contentType)}>newdude</button>
     </>
   );
 }
