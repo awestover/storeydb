@@ -8,7 +8,7 @@ import { EditForm, AddForm} from './Form.js'
 
 export const EditPopup = (props) => {
   return ( 
-    <Popup trigger={<button className="button"> view more </button>} modal nested > 
+    <Popup trigger={<button className="button"> EDIT </button>} modal nested > 
     {close => ( <div className="modal"> <button className="close" onClick={close}> &times; </button> <div className="header"> Modal Title </div> 
 
       <div className="content"> 
@@ -27,7 +27,7 @@ export const EditPopup = (props) => {
 
 export const AddPopup = (props) => {
   return ( 
-    <Popup trigger={<button className="button"> view more </button>} modal nested > 
+    <Popup trigger={<button className="button"> ADD </button>} modal nested > 
     {close => ( <div className="modal"> <button className="close" onClick={close}> &times; </button> <div className="header"> Modal Title </div> 
 
       <div className="content"> BRO IM adding </div> 
