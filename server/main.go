@@ -13,6 +13,22 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type ElementData struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Type        string `json:"type"`
+}
+
+type StoryData struct {
+	Title   string `json:"title"`
+	PoV     string `json:"pov"`
+	Summary string `json:"summary"`
+	Scene   string `json:"scene"`
+}
+type Stories struct {
+	Stories []StoryData `json:"stories"`
+}
+
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/bigdata", GetElement)
@@ -28,6 +44,41 @@ func main() {
 	http.ListenAndServe(":"+PORT, corsHandler)
 }
 
+func ReadFile(filename string) []byte {
+	jsonFile, _ := os.Open(filename)
+	defer jsonFile.Close()
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+	return byteValue
+}
+
+func EditElement(w http.ResponseWriter, r *http.Request) {
+	eltOldName := r.URL.Query().Get("oldname")
+	eltName := r.URL.Query().Get("name")
+	eltDescription := r.URL.Query().Get("description")
+	eltType := r.URL.Query().Get("type")
+
+	filename := "db/elts.json"
+	byteValue := ReadFile(filename)
+
+	elts := map[string][]ElementData{}
+	json.Unmarshal(byteValue, &elts)
+
+	for i := len(elts[eltType]) - 1; i >= 0; i++ {
+		oldElt := elts[eltType][i]
+		if oldElt.Name == eltOldName {
+			elts[eltType] = append(elts[eltType][:1], elts[eltType][i+1:]...)
+		}
+	}
+
+	newElt := ElementData{eltName, eltDescription, eltType}
+	elts[eltType] = append(elts[eltType], newElt)
+
+	byteValue, _ = json.MarshalIndent(elts, "", "	")
+	_ = ioutil.WriteFile(filename, byteValue, 0644)
+
+	fmt.Println("BEHOLD! a user has edited an old element")
+}
+
 func PushElement(w http.ResponseWriter, r *http.Request) {
 	eltName := r.URL.Query().Get("name")
 	eltDescription := r.URL.Query().Get("description")
@@ -35,11 +86,10 @@ func PushElement(w http.ResponseWriter, r *http.Request) {
 
 	// ElementData{Name: eltName, Description: eltDescription}
 	// open json file, read as bytes, convert to dict
-	elts := map[string][]ElementData{}
 	filename := "db/elts.json"
-	jsonFile, _ := os.Open(filename)
-	defer jsonFile.Close()
-	byteValue, _ := ioutil.ReadAll(jsonFile)
+	byteValue := ReadFile(filename)
+
+	elts := map[string][]ElementData{}
 	json.Unmarshal(byteValue, &elts)
 
 	fmt.Println(eltName)
@@ -55,7 +105,7 @@ func PushElement(w http.ResponseWriter, r *http.Request) {
 	elts[eltType] = append(elts[eltType], newElt)
 	byteValue, _ = json.MarshalIndent(elts, "", "	")
 	_ = ioutil.WriteFile(filename, byteValue, 0644)
-  
+
 	jsonData, _ := json.Marshal(newElt)
 	io.WriteString(w, string(jsonData))
 
@@ -63,21 +113,13 @@ func PushElement(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("BEHOLD! a user has submitted a new element")
 }
 
-type ElementData struct {
-	Name        string `json:"name"`
-	Description string `json:"description"`
-  Type        string `json:"type"`
-}
-
 func GetElement(w http.ResponseWriter, r *http.Request) {
 	eltType := r.URL.Query().Get("name")
 
 	// open json file, read as bytes, convert to dict
-	elts := map[string][]ElementData{}
 	filename := "db/elts.json"
-	jsonFile, _ := os.Open(filename)
-	defer jsonFile.Close()
-	byteValue, _ := ioutil.ReadAll(jsonFile)
+	byteValue := ReadFile(filename)
+	elts := map[string][]ElementData{}
 	json.Unmarshal(byteValue, &elts)
 
 	// convert from dict to json
@@ -88,16 +130,6 @@ func GetElement(w http.ResponseWriter, r *http.Request) {
 	// fmt.Println(elts)
 	// fmt.Println("yoyo yo big data")
 	// fmt.Println(eltType)
-}
-
-type StoryData struct {
-	Title   string `json:"title"`
-	PoV     string `json:"pov"`
-	Summary string `json:"summary"`
-	Scene   string `json:"scene"`
-}
-type Stories struct {
-	Stories []StoryData `json:"stories"`
 }
 
 func getStories(w http.ResponseWriter, r *http.Request) {
@@ -115,4 +147,3 @@ func getStories(w http.ResponseWriter, r *http.Request) {
 
 	// fmt.Println("STORY TIME")
 }
-
