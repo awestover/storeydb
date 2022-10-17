@@ -5,6 +5,7 @@ import { SERVER_URL } from '../constants';
 import { Box, Typography } from '@mui/material';
 
 import ImageCards from './ImageCards';
+import {AddPopup} from './Popup.js'
 
 function SideCarousel(props) {
 
@@ -26,6 +27,24 @@ function SideCarousel(props) {
     setBigData(dataDudes => [...dataDudes, dude]);
   };
 
+  function newdude(name, description, type) {
+    alert(name);
+    alert(description);
+    axios.get(SERVER_URL + "pushElement", { 
+      params: {
+        name: name, 
+        description: description, 
+        type: type}})
+      .then(res => { 
+        props.closefn();
+        let pushDude = document.getElementById(res.data.type + "Carousel");
+        // let pushStuff = <Box m={3}> <ImageCards name={res.data.name} description={res.data.description}/> </Box> ;
+        let pushStuff = JSON.stringify(res.data);
+        console.log(pushStuff);
+        pushDude.append(pushStuff);
+      });
+  }
+
   return (
     <>
       { bigData && 
@@ -40,6 +59,10 @@ function SideCarousel(props) {
           ) }
         </Box>
       }
+
+
+      < AddPopup />
+      <button onClick={() => newdude(props.contentType)}>newdude</button>
     </>
   );
 }

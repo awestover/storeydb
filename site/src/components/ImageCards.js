@@ -15,7 +15,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-import MyPopup from './Popup';
+import {EditPopup} from './Popup.js'
 
 export default function ImageCards(props) {
   const [expanded, setExpanded] = React.useState(false);
@@ -48,7 +48,7 @@ export default function ImageCards(props) {
           <ShareIcon />
         </IconButton>
 
-    <MyPopup />
+    <EditPopup />
       </CardActions>
 
     </Card>

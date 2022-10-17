@@ -25,10 +25,8 @@ contribute to the github
 
 it will be like a thing to have "world-building sessions"
 
-
 there will be some kind of todo list kinda thing
 to implement feature suggestions.
-
 
 some random kind of weird ideas:
 -- light cycle: day / night at night light is a bubble around you
