@@ -14,7 +14,10 @@ export const EditForm = (props) => {
       params: {
         name: name, 
         description: description, 
-        type: type}})
+        type: type,
+        oldName: props.curName,
+        oldDescription: props.curDescription
+      }})
       .then(res => { 
         props.closefn();
 

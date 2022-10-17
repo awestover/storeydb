@@ -40,16 +40,7 @@ export default function ImageCards(props) {
         </Typography>
       </CardContent>
 
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-
-    <EditPopup updateData={props.updateData}/>
-      </CardActions>
+    <EditPopup updateData={props.updateData} curName={props.name} curDescription={props.description}/>
 
     </Card>
   );
