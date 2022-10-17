@@ -34,6 +34,7 @@ func main() {
 	r.HandleFunc("/bigdata", GetElement)
 	r.HandleFunc("/pushElement", PushElement)
 	r.HandleFunc("/editElement", EditElement)
+  r.HandleFunc("/getStory", getStory)
   r.HandleFunc("/getStories", getStories)
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
@@ -142,25 +143,40 @@ func GetElement(w http.ResponseWriter, r *http.Request) {
 	// convert from dict to json
 	jsonData, _ := json.Marshal(elts[eltType])
 	io.WriteString(w, string(jsonData))
-
-	// fmt.Println(jsonData)
-	// fmt.Println(elts)
-	// fmt.Println("yoyo yo big data")
-	// fmt.Println(eltType)
 }
 
-func getStories(w http.ResponseWriter, r *http.Request) {
+func getStory(w http.ResponseWriter, r *http.Request) {
 	whichStory := r.URL.Query().Get("storyid")
 
-	stories := map[string]Stories{}
+  fmt.Println("STORY TIME")
+  fmt.Println(whichStory)
+
+	stories := map[string]StoryData{}
 	filename := "db/story.json"
 	jsonFile, _ := os.Open(filename)
 	defer jsonFile.Close()
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	json.Unmarshal(byteValue, &stories)
 
-	jsondata, _ := json.Marshal(stories[whichStory])
-	io.WriteString(w, string(jsondata))
+  fmt.Println(stories)
 
-	// fmt.Println("STORY TIME")
+	jsondata, _ := json.Marshal(stories[whichStory])
+  fmt.Println(string(jsondata))
+	io.WriteString(w, string(jsondata))
 }
+
+func getStories(w http.ResponseWriter, r *http.Request) {
+	stories := map[string]StoryData{}
+	filename := "db/story.json"
+	jsonFile, _ := os.Open(filename)
+	defer jsonFile.Close()
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+	json.Unmarshal(byteValue, &stories)
+
+	jsondata, _ := json.Marshal(stories)
+
+  fmt.Println(byteValue)
+  fmt.Println(string(jsondata))
+	io.WriteString(w, string(jsondata))
+}
+
