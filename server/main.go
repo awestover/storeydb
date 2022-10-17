@@ -67,22 +67,23 @@ func EditElement(w http.ResponseWriter, r *http.Request) {
 	elts := map[string][]ElementData{}
 	json.Unmarshal(byteValue, &elts)
 
-	for i := len(elts[eltType]) - 1; i >= 0; i++ {
-		oldElt := elts[eltType][i]
-		if oldElt.Name == eltOldName {
-			elts[eltType] = append(elts[eltType][:1], elts[eltType][i+1:]...)
-		}
-	}
-
-	// deleted := 0
-	// for i := range elts[eltType] {
-	//   j := i - deleted
-
+	// for i := len(elts[eltType]) - 1; i >= 0; i++ {
 	//   oldElt := elts[eltType][i]
 	//   if oldElt.Name == eltOldName {
 	//     elts[eltType] = append(elts[eltType][:1], elts[eltType][i+1:]...)
 	//   }
 	// }
+
+	deleted := 0
+	for i := range elts[eltType] {
+		j := i - deleted
+
+		oldElt := elts[eltType][j]
+		if oldElt.Name == eltOldName {
+			elts[eltType] = elts[eltType][:j+copy(elts[eltType][j:], elts[eltType][j+1:])]
+			deleted++
+		}
+	}
 
 	newElt := ElementData{eltName, eltDescription, eltType}
 	elts[eltType] = append(elts[eltType], newElt)
