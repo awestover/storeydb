@@ -22,11 +22,6 @@ export const EditForm = (props) => {
         props.closefn();
 
         props.updateData();
-        // let pushDude = document.getElementById(res.data.type + "Carousel");
-        // let pushStuff = <Box m={3}> <ImageCards name={res.data.name} description={res.data.description}/> </Box> ;
-        // let pushStuff = JSON.stringify(res.data);
-        // console.log(pushStuff);
-        // pushDude.append(pushStuff);
       });
   }
 
@@ -61,7 +56,7 @@ export const AddForm = (props) => {
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
 
-  function editdude(name, description, type) {
+  function adddude(name, description, type) {
     alert(name);
     alert(description);
     axios.get(SERVER_URL + "pushElement", { 
@@ -72,11 +67,6 @@ export const AddForm = (props) => {
       .then(res => { 
         props.closefn();
         props.updateData();
-        // let pushDude = document.getElementById(res.data.type + "Carousel");
-        // let pushStuff = <Box m={3}> <ImageCards name={res.data.name} description={res.data.description}/> </Box> ;
-        // let pushStuff = JSON.stringify(res.data);
-        // console.log(pushStuff);
-        // pushDude.append(pushStuff);
       });
   }
 
@@ -100,7 +90,7 @@ export const AddForm = (props) => {
         />
       </div>
       <div className="form-group">
-        <button className="form-control btn btn-primary" onClick={() => editdude(name, description, type)}>
+        <button className="form-control btn btn-primary" onClick={() => adddude(name, description, type)}>
           addform
         </button>
       </div>
