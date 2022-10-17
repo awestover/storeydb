@@ -48,7 +48,7 @@ export default function ImageCards(props) {
           <ShareIcon />
         </IconButton>
 
-    <EditPopup />
+    <EditPopup updateData={props.updateData}/>
       </CardActions>
 
     </Card>

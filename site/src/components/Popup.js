@@ -14,7 +14,7 @@ export const EditPopup = (props) => {
       <div className="content"> 
       Lorem ipsum dolor sit amet consectetur aEDIT EDIT EDIT****dipisicing elit. Atque, a nostrum. Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates delectus doloremque, explicabo tempore dicta adipisci fugit amet dignissimos? <br /> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit commodi beatae optio voluptatum sed eius cumque, delectus saepe repudiandae explicabo nemo nam libero ad, doloribus, voluptas rem alias. Vitae? </div> 
 
-      <EditForm closefn={close}></EditForm>
+      <EditForm closefn={close} updateData={props.updateData}></EditForm>
 
       <div className="actions"> <button className="button" onClick={() => { console.log('modal closed '); close(); }} > close modal </button> </div> 
 
@@ -32,7 +32,7 @@ export const AddPopup = (props) => {
 
       <div className="content"> BRO IM adding </div> 
 
-      <AddForm closefn={close}></AddForm>
+      <AddForm closefn={close} updateData={props.updateData}></AddForm>
 
       <div className="actions"> <button className="button" onClick={() => { console.log('modal closed '); close(); }} > close modal </button> </div> 
 
