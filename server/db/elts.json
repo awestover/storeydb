@@ -19,6 +19,11 @@
 			"name": "testadd",
 			"description": "testadd",
 			"type": "character"
+		},
+		{
+			"name": "asdf",
+			"description": "asdf",
+			"type": "character"
 		}
 	],
 	"d": [
