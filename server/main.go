@@ -33,6 +33,7 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/bigdata", GetElement)
 	r.HandleFunc("/pushElement", PushElement)
+	r.HandleFunc("/editElement", EditElement)
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})
