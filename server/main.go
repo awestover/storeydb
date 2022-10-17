@@ -34,6 +34,7 @@ func main() {
 	r.HandleFunc("/bigdata", GetElement)
 	r.HandleFunc("/pushElement", PushElement)
 	r.HandleFunc("/editElement", EditElement)
+  r.HandleFunc("/getStories", getStories)
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})
