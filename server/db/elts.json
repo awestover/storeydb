@@ -14,6 +14,11 @@
 			"name": "jumpydude",
 			"description": "nice dude",
 			"type": "character"
+		},
+		{
+			"name": "testadd",
+			"description": "testadd",
+			"type": "character"
 		}
 	],
 	"d": [
