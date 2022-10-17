@@ -10,7 +10,7 @@ export const EditForm = (props) => {
   const [description, setDescription] = useState("");
 
   function editdude(name, description, type) {
-    axios.get(SERVER_URL + "pushElement", { 
+    axios.get(SERVER_URL + "editElement", { 
       params: {
         name: name, 
         description: description, 
@@ -71,11 +71,12 @@ export const AddForm = (props) => {
         type: type}})
       .then(res => { 
         props.closefn();
-        let pushDude = document.getElementById(res.data.type + "Carousel");
+        props.updateData();
+        // let pushDude = document.getElementById(res.data.type + "Carousel");
         // let pushStuff = <Box m={3}> <ImageCards name={res.data.name} description={res.data.description}/> </Box> ;
-        let pushStuff = JSON.stringify(res.data);
-        console.log(pushStuff);
-        pushDude.append(pushStuff);
+        // let pushStuff = JSON.stringify(res.data);
+        // console.log(pushStuff);
+        // pushDude.append(pushStuff);
       });
   }
 
