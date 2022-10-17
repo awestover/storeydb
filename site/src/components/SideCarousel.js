@@ -62,7 +62,7 @@ function SideCarousel(props) {
       }
 
 
-      < AddPopup />
+      < AddPopup updateData={updateData}/>
     </>
   );
 }
