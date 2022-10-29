@@ -5,11 +5,15 @@ import 'reactjs-popup/dist/index.css';
 // import axios from 'axios';
 // import { SERVER_URL } from '../constants';
 import { EditForm, AddForm } from './Form.js'
-import { Button } from '@mui/material'
+import { Button, IconButton } from '@mui/material'
+
+import EditIcon from '@mui/icons-material/Edit';
+
+
 
 export const EditPopup = (props) => {
   return ( 
-    <Popup trigger={<Button className="button" size="small" variant="contained" color="success"> Edit </Button>} modal nested > 
+    <Popup trigger={<IconButton size="small" variant="contained" color="success"> <EditIcon/> </IconButton>} modal nested > 
     {close => ( <div className="modal"> <button className="close" onClick={close}> &times; </button> <div className="header"> Edit </div> 
       <div className="content"> 
       <h3>old name: {props.curName}</h3>
@@ -23,12 +27,14 @@ export const EditPopup = (props) => {
   );
 }
 
+
+
 export const ViewPopup = (props) => {
   return ( 
-    <Popup trigger={<Button className="button" size="small" variant="contained" color="success"> View </Button>} modal nested > 
-    {close => ( 
+    <Popup open={props.open} onClose={() => props.setOpen(false)}modal nested > 
+    {() => ( 
       <div className="modal"> 
-        <button className="close" onClick={close}> &times; </button> 
+        <button className="close" onClick={() => props.setOpen(false)}> &times; </button> 
         <div className="header"> View </div> 
         <div className="content"> 
           <h3>Name: {props.curName}</h3>

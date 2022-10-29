@@ -49,8 +49,8 @@ function SideCarousel(props) {
 
         <Typography variant="h5"> { props.contentType } </Typography>
 
-          { bigData.map((character) => 
-          <Box m={3}>
+          { bigData.map((character, i) => 
+          <Box m={3} key={i}>
             <ImageCards name={character.name} description={character.description} updateData={setRefresh}/>
           </Box>
           ) }
