@@ -17,21 +17,27 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import { EditPopup, ViewPopup } from './Popup.js'
 
+const IMGS = ['shark3.png', 'bear4.png', 'rooster1.png', 'squid3.png', 'dog2.png', 'shark4.png', 'dragon1.png', 'bg.png', 'dino1.png', 'bear2.png', 'shark1.png', 'squid4.png', 'chicken1.png', 'sheep3.png', 'sheep2.png', 'squid1.png', 'narwhal2.png', 'fly1.png', 'dog4.png', 'shark2.png', 'pie1.png', 'dragon4.png', 'hawaiianPizza1.png', 'logo.png', 'squid2.png', 'narwhal1.png', 'crab1.png', 'butterfly1.png', 'sheep1.png', 'pizza1.png', 'dragon3.png', 'sheep4.png', 'cake1.png', 'dog3.png', 'narwhal4.png', 'bear3.png', 'squirrel1.png', 'butterfly3.png', 'butterfly4.png', 'butterfly2.png', 'dog1.png', 'dragon2.png', 'balrog1.png', 'bear1.png', 'narwhal3.png'];
+
+
 export default function ImageCards(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [viewOpen, setViewOpen] = React.useState(false);
 
-  return (
-    <Card sx={{ width: 250, backgroundColor: "transparent" }}>
+  function randImg(){
+    return "pictures/" + IMGS[Math.round(Math.random()*IMGS.length)];
+  }
 
+  return (
+    <Card sx={{ width: 200, backgroundColor: "transparent" }}>
 
       <CardContent>
         <CardActionArea onClick={() => setViewOpen(true)}>
           <CardMedia
             component="img"
-            height="150"
-            image="https://images.unsplash.com/photo-1664055258388-6efc6fbe0aa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-            alt="Paella dish"
+            height="100"
+            image={randImg()}
+            alt="nice picture"
           />
         </CardActionArea>
 
@@ -57,3 +63,9 @@ export default function ImageCards(props) {
   );
 }
 
+// <CardMedia
+//   component="img"
+//   height="150"
+//   image="https://images.unsplash.com/photo-1664055258388-6efc6fbe0aa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+//   alt="Paella dish"
+// />
