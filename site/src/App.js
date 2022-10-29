@@ -1,10 +1,10 @@
 import './App.css';
 
 import SideCarousel from './components/SideCarousel';
+import StoryCarousel from './components/StoryCarousel';
 import AppHeader from './components/AppHeader';
-import Stories from './components/Stories';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <AppHeader/>
@@ -12,10 +12,9 @@ function App() {
         <SideCarousel contentType="character" id="characterCarousel"/>
         <SideCarousel contentType="location"  id="locationCarousel"/>
         <SideCarousel contentType="item"      id="itemCarousel"/>
-        <Stories  />
+        <StoryCarousel />
       </header>
     </div>
   );
 }
 
-export default App;

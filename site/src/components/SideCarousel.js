@@ -10,17 +10,13 @@ import {AddPopup} from './Popup.js'
 function SideCarousel(props) {
 
   const [bigData, setBigData] = useState(null);
-  let dataDudes = null;
   const [refresh, setRefresh] = useState(true);
 
   useEffect(() => {
     console.log(props.contentType);
     axios.get(SERVER_URL + "bigdata", { params: {name: props.contentType}})
       .then(res => {
-        const data = res.data;
         setBigData(res.data);
-        dataDudes = res.data;
-        console.log(JSON.stringify(res.data));
       })
   }, [refresh]);
 
