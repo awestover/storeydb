@@ -92,13 +92,18 @@
 	],
 	"location": [
 		{
-			"name": "narnia",
-			"description": "nice place",
-			"type": ""
-		},
-		{
 			"name": "asdf",
 			"description": "asdf",
+			"type": "location"
+		},
+		{
+			"name": "newchar",
+			"description": "newchar is a greatchar",
+			"type": "location"
+		},
+		{
+			"name": "N A R N",
+			"description": "bro",
 			"type": "location"
 		}
 	]
