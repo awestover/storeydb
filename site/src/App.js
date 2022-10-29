@@ -15,6 +15,7 @@ export default function App() {
       <Box sx={{ mt: 10 }}>
         <img height={400} src={logo} alt="Logo" />
         <Typography variant="h2" color="primary"> StoreyDB</Typography>
+        <Typography variant="h6" color="primary"> Created by Alek Westover and Kevin Hsu</Typography>
       </Box>
 
       <header className="App-header">
