@@ -45,9 +45,10 @@ function SideCarousel(props) {
   return (
     <>
       { bigData && 
-      <Box id={props.id} display="flex" m={3} sx={{width: "60%", overflowX: "scroll", border: "2px solid black"}}>
+      <Box id={props.id} display="flex" m={1} sx={{width: "60%", overflowX: "scroll"}}>
 
         <Typography variant="h5"> { props.contentType } </Typography>
+        <AddPopup updateData={updateData}/>
 
           { bigData.map((character, i) => 
           <Box m={3} key={i}>
@@ -57,8 +58,6 @@ function SideCarousel(props) {
         </Box>
       }
 
-
-      < AddPopup updateData={updateData}/>
     </>
   );
 }

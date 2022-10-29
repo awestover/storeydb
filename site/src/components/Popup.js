@@ -8,6 +8,7 @@ import { EditForm, AddForm } from './Form.js'
 import { Button, IconButton } from '@mui/material'
 
 import EditIcon from '@mui/icons-material/Edit';
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
 
 
@@ -48,7 +49,7 @@ export const ViewPopup = (props) => {
 
 export const AddPopup = (props) => {
   return ( 
-    <Popup trigger={<button className="button"> ADD </button>} modal nested > 
+    <Popup trigger={<IconButton color="primary"> <ControlPointIcon sx={{ fontSize: "60px" }}/> </IconButton>} modal nested > 
     { close => ( <div className="modal"> <button className="close" onClick={close}> &times; </button> <div className="header"> ADD </div> <AddForm closefn={close} updateData={props.updateData}></AddForm> </div> ) } 
     </Popup>
   );
