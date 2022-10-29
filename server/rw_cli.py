@@ -1,15 +1,17 @@
 import requests
 import json
-kevin_server = "http://doranelle.kevinhsu.net"
+SERVER = "http://localhost:5000"
+#  SERVER = "http://doranelle.kevinhsu.net:5000"
 
 def getscene(title):
-  return requests.get(f"{kevin_server}/getscene", params={"title": title})
+  x = requests.get(f"{SERVER}/getStory", params={"storyid": title})
+  return x.content.decode("utf-8")
 
 def pushscene(fname):
   with open(fname, 'r') as myfile:
     story_json_data = json.loads(myfile.read())
 
-  requests.post(f"{kevin_server}/pushscene", data=story_json_data)
+  requests.post(f"{SERVER}/pushscene", data=story_json_data)
 
 choice = input("[get]scene/[push]scene\n> ")
 

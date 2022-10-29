@@ -1,11 +1,6 @@
 {
 	"character": [
 		{
-			"name": "Bob",
-			"description": "he is a really stsrong dude",
-			"type": "character"
-		},
-		{
 			"name": "kevin",
 			"description": "insane coding skillz",
 			"type": "character"
@@ -18,6 +13,16 @@
 		{
 			"name": "tested",
 			"description": "tested",
+			"type": "character"
+		},
+		{
+			"name": "asdf",
+			"description": "asdf",
+			"type": "character"
+		},
+		{
+			"name": "bob2",
+			"description": "bob2",
 			"type": "character"
 		}
 	],
